@@ -49,7 +49,6 @@ public class View {
 
 
         buttonPanel.add(jButton);
-        jButton.addActionListener(new SubmitPreseed());
         nameFirstField.setSize(50, 10);
         textPanel.add(nameFirstField);
         textPanel.add(nameSecondField);
@@ -72,22 +71,9 @@ public class View {
         jFrame.setContentPane(mainPanel);
         jFrame.setSize(400,500);
 
-        jFrame.setVisible(true);
+//        jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    class  SubmitPreseed implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(nameFirstField.getText().equals("")){
-                nameFirstField.setText("pressed");
-            }else{
-                nameFirstField.setText("");
-            }
-//System.out.println("asdasdas");
-//System.out.println(nameFirstField.getText());
-//System.out.println(nameFirstField.getText().equals(""));
-        }
-    }
 }
 
