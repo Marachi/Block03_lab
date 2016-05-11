@@ -1,9 +1,9 @@
 package labBlock03;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,79 +13,101 @@ import java.util.regex.Pattern;
  */
 public class Controller {
 
+    private ArrayList<JTextField> list;
     private View view;
     private Model model;
 
     Controller(Model model, View view){
         this.view=view;
         this.model=model;
+        list = new ArrayList();
     }
-    void processUser(){
 
-        view.form.submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkValid();
-            }
-        });
-        view.form.refreshButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.form.firstName.setEnabled(true);
-                view.form.secondName.setEnabled(true);
-                view.form.thirdName.setEnabled(true);
-                view.form.telHome.setEnabled(true);
-                view.form.telMobile.setEnabled(true);
-                view.form.email.setEnabled(true);
-
-            }
-        });
+    void processUser() {
+        addListener();
+        fillList(list, view.form.getContentPanel());
     }
-    void checkValid(){
-            if (itemValid(view.form.firstName, view.namePattern)){
-                view.form.firstName.setBackground(Color.white);
-                view.form.firstName.setEnabled(false);
+
+    private void addListener(){
+
+        view.form.submitButton.addActionListener(e -> {
+            checkValidOfAllItems();
+
+        });
+        view.form.refreshButton.addActionListener(e -> {
+            for (JTextField j:list) {
+                j.setEnabled(true);
+            }
+
+        });
+
+    }
+
+    private void fillList(ArrayList<JTextField> arrayList, JPanel jPanel){
+        for (Component c:jPanel.getComponents()) {
+            if (c instanceof JTextField){
+                arrayList.add((JTextField) c);
+            }
+        }
+//        for (JTextField j:arrayList){
+//            System.out.println(j.getName());
+//        }
+    }
+
+    private void checkValidOfAllItems(){
+        for (JTextField j:list) {
+           checkItemValid(j);
+        }
+
+    }
+
+    private   void checkItemValid(JTextField field){
+        if (field.equals(view.form.group)){
+            if (field.getText().equals(UserGroup.A.name())|field.getText().equals(UserGroup.B.name())
+                    |field.getText().equals(UserGroup.C.name())){
+
+                field.setBackground(Color.white);
+                field.setEnabled(false);
             }else {
-                view.form.firstName.setBackground(Color.pink);
+                field.setBackground(Color.pink);
             }
-
-        if (itemValid(view.form.secondName, view.namePattern)){
-            view.form.secondName.setBackground(Color.white);
-            view.form.secondName.setEnabled(false);
         }else {
-            view.form.secondName.setBackground(Color.pink);
+            Matcher matcher = createPattern(field).matcher(field.getText());
+            if (matcher.matches()) {
+                field.setBackground(Color.white);
+                field.setEnabled(false);
+            } else {
+                field.setBackground(Color.pink);
+            }
         }
-
-        if (itemValid(view.form.thirdName, view.namePattern)){
-            view.form.thirdName.setBackground(Color.white);
-            view.form.thirdName.setEnabled(false);
-        }else {
-            view.form.thirdName.setBackground(Color.pink);
-        }
-        if (itemValid(view.form.telHome, view.telHomePattern)){
-            view.form.telHome.setBackground(Color.white);
-            view.form.telHome.setEnabled(false);
-        }else {
-            view.form.telHome.setBackground(Color.pink);
-        }
-        if (itemValid(view.form.telMobile, view.telMobilePattern)){
-            view.form.telMobile.setBackground(Color.white);
-            view.form.telMobile.setEnabled(false);
-        }else {
-            view.form.telMobile.setBackground(Color.pink);
-        }
-        if (itemValid(view.form.email, view.emailPattern)){
-            view.form.email.setBackground(Color.white);
-            view.form.email.setEnabled(false);
-        }else {
-            view.form.email.setBackground(Color.pink);
-        }
-//        valid=itemValid(view.form.firstName, view.namePattern)&&itemValid(view.form.secondName, view.namePattern)&&
-//                itemValid(view.form.thirdName, view.namePattern);
-//        return valid;
     }
-    boolean itemValid(JFormattedTextField field,Pattern pattern){
-        Matcher matcher = pattern.matcher(field.getText());
-        return matcher.matches();
+
+    @NotNull
+    private Pattern createPattern(JTextField field){
+        if (field.equals(view.form.firstName)||field.equals(view.form.secondName)||field.equals(view.form.thirdName)) {
+            return Pattern.compile(view.NAME_PATTERN);
+        }else if (field.equals(view.form.nickName)){
+            return Pattern.compile(view.NICK_PATTERN);
+        }else if (field.equals(view.form.telHome)){
+            return Pattern.compile(view.TEL_HOME_PATTERN);
+        }else if (field.equals(view.form.telMobile)){
+            return Pattern.compile(view.TEL_MOBILE_PATTERN);
+        }else if (field.equals(view.form.email)){
+            return Pattern.compile(view.EMAIL_PATTERN);
+        }else if (field.equals(view.form.scype)) {
+            return Pattern.compile(view.SCYPE_PATTERN);
+        }else if (field.equals(view.form.indexTextField)) {
+            return Pattern.compile(view.INDEX_PATTERN);
+        }else if (field.equals(view.form.cityTextField)) {
+            return Pattern.compile(view.CITY_PATTERN);
+        }else if (field.equals(view.form.streetTextField)) {
+            return Pattern.compile(view.STREET_PATTERN);
+        }else if (field.equals(view.form.buildingTextField)) {
+            return Pattern.compile(view.BUILDING_PATTERN);
+        }else if (field.equals(view.form.appartmentTextField)) {
+            return Pattern.compile(view.APPARTMENT_PATTERN);
+        }
+        return Pattern.compile(".*");
     }
+
 }

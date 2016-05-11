@@ -13,28 +13,40 @@ public class MyForm extends JFrame{
 
     JButton submitButton;
 
-    JPanel content;
+    private JPanel content;
+
+
+
     JPanel rootPanel;
 
 
 
-    JFormattedTextField firstName;
-    JFormattedTextField secondName;
-    JFormattedTextField thirdName;
-    JFormattedTextField nickName;
-    JFormattedTextField telHome;
-    JFormattedTextField telMobile;
-    JFormattedTextField scype;
-    JFormattedTextField email;
-    JFormattedTextField adressIndexCityStreetFormattedTextField;
+    JTextField firstName;
+    JTextField secondName;
+    JTextField thirdName;
+    JTextField nickName;
+    JTextField telHome;
+    JTextField telMobile;
+    JTextField scype;
+    JTextField email;
+     JTextField indexTextField;
      JTextField group;
      JButton refreshButton;
+     JTextField cityTextField;
+     JTextField streetTextField;
+     JTextField buildingTextField;
+     JTextField appartmentTextField;
 
-    public MyForm(){
+    JPanel getContentPanel() {
+        return this.content;
+    }
+
+    MyForm(){
          super("User Information");
          this.setContentPane(rootPanel);
          pack();
          this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        group.setName("UserGroupField");
          this.setVisible(true);
 
     }
