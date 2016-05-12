@@ -42,6 +42,7 @@ public class Controller {
         view.form.submitButton.addActionListener(e -> {
             validOfAllItems();
             if(checkvalidOfAllItems()) {
+                //set data
                 model.setSurName(view.form.surName.getText());
                 model.setFirstNameUser(view.form.firstName.getText());
                 model.setThirdName(view.form.thirdName.getText());
@@ -56,15 +57,16 @@ public class Controller {
                 model.setStreet(view.form.street.getText());
                 model.setBuilding(view.form.building.getText());
                 model.setAppartment(view.form.appartment.getText());
+                //create name, adress and write a date
                 model.createName();
                 model.createPostAdress();
                 model.setDate();
                 model.createAdress();
-
-                view.print(model.getName());
-                view.print(model.getAdress());
-                view.print(model.getDate());
-                view.print(model.getPostAdress());
+//
+//                view.print(model.getName());
+//                view.print(model.getAdress());
+//                view.print(model.getDate());
+//                view.print(model.getPostAdress());
 
 
             }
