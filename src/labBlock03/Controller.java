@@ -30,8 +30,8 @@ public class Controller {
             list.add(view.nameSecondField.getText());
             list.add(view.nameThirdFieldx.getText());
             list.add(view.nickNameField.getText());
-            list.add(view.telHome.getText());
-            list.add(view.telWork.getText());
+            list.add(view.telHomeField.getText());
+            list.add(view.telWorkField.getText());
             list.add(view.scypeField.getText());
             list.add(view.emailField.getText());
             for (String s:list) {
