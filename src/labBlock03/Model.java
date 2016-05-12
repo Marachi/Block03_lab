@@ -1,17 +1,13 @@
 package labBlock03;
 
-import javax.swing.*;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by potaychuk on 04.05.2016.
- */
+
 public class Model {
     private String name;
-    private String firstName;
-    private String secondName;
+    private String surName;
+    private String firstNameUser;
     private String thirdName;
     private String nickName;
     private String group;
@@ -20,6 +16,7 @@ public class Model {
     private String scype;
     private String email;
     private String adress;
+    private String postAdress;
     private String index;
     private String street;
     private String building;
@@ -29,11 +26,16 @@ public class Model {
 
 
     public void createName() {
-        name=firstName+" "+secondName.substring(0,1).toUpperCase()+"."+thirdName.substring(0,1).toUpperCase()+".";
+        name=surName +" "+ firstNameUser.substring(0,1).toUpperCase()+"."+thirdName.substring(0,1).toUpperCase()+".";
+    }
+
+    public void createPostAdress() {
+        postAdress = name+"\n"+street+" "+building +", "+ appartment+"\n"+city+"\n"+index;
     }
 
     public void createAdress() {
-        adress = name+"\n"+street+" "+building +", "+ appartment+"\n"+city+"\n"+index;
+        adress = "Name: "+name+"\n"+"Nickname: " +nickName +"\n"+"Group: "+group+"\n"+"Home tel.: "  + telHome+"\n" +
+                "Mobile tel.: " + telMobile+"\n"+"Scype: " + scype+"\n" + "Email: " + email;
     }
 
     /**
@@ -80,12 +82,12 @@ public class Model {
         this.city=city;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName=firstName;
+    public void setSurName(String surName) {
+        this.surName=surName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName=secondName;
+    public void setFirstNameUser(String firstNameUser) {
+        this.firstNameUser=firstNameUser;
     }
 
     public void setThirdName(String thirdName) {
@@ -100,6 +102,10 @@ public class Model {
         return adress;
     }
 
+    public String getPostAdress() {
+        return postAdress;
+    }
+
     public void setDate() {
         Date curTime = new Date();
         DateFormat dtfrm = DateFormat.getDateInstance();
@@ -108,5 +114,9 @@ public class Model {
 
     public String getDate() {
         return date;
+    }
+
+    public void setGroup(String group) {
+        this.group=group;
     }
 }

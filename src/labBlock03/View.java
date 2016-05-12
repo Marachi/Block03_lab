@@ -3,9 +3,6 @@ package labBlock03;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-/**
- * Created by Славик on 08.05.2016.
- */
 public class View {
 
     /**

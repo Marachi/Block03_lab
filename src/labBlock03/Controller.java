@@ -42,12 +42,13 @@ public class Controller {
         view.form.submitButton.addActionListener(e -> {
             validOfAllItems();
             if(checkvalidOfAllItems()) {
-                model.setFirstName(view.form.surName.getText());
-                model.setSecondName(view.form.firstName.getText());
+                model.setSurName(view.form.surName.getText());
+                model.setFirstNameUser(view.form.firstName.getText());
                 model.setThirdName(view.form.thirdName.getText());
                 model.setTelHome(view.form.telHome.getText());
                 model.setTelMobile(view.form.telMobile.getText());
                 model.setNickName(view.form.nickName.getText());
+                model.setGroup(view.form.group.getText());
                 model.setEmail(view.form.email.getText());
                 model.setScype(view.form.scype.getText());
                 model.setIndex(view.form.index.getText());
@@ -56,12 +57,16 @@ public class Controller {
                 model.setBuilding(view.form.building.getText());
                 model.setAppartment(view.form.appartment.getText());
                 model.createName();
-                model.createAdress();
+                model.createPostAdress();
                 model.setDate();
+                model.createAdress();
 
                 view.print(model.getName());
                 view.print(model.getAdress());
                 view.print(model.getDate());
+                view.print(model.getPostAdress());
+
+
             }
         });
 
