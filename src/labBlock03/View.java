@@ -7,7 +7,10 @@ import java.util.regex.Pattern;
  * Created by Славик on 08.05.2016.
  */
 public class View {
-    MyForm form;
+
+    /**
+     * Constants for patterns
+     */
     final String NAME_PATTERN = "\\D{1,15}";
     final String TEL_HOME_PATTERN = "\\+?3?8?(.)?(\\(|-)?(.)?(\\d{3})(\\))?(.)?\\d{2}(.|-)?\\d(.|-)?\\d(.|-)?\\d((.|-)?\\d((.|-)?\\d)?)?";
     final String TEL_MOBILE_PATTERN = "\\+?3?8?(.)?(\\(|-)?(.)?(\\d{3})(\\))?(.)?\\d{2}(.|-)?\\d(.|-)?\\d(.|-)?\\d(.|-)?\\d(.|-)?\\d";
@@ -19,8 +22,18 @@ public class View {
     final String STREET_PATTERN = "(^[A-Za-z0-9-]{1,25}(\\s[A-Za-z0-9-]{1,25})?)$";//
     final String BUILDING_PATTERN = "^[A-Za-z0-9/-]{1,6}$";//
     final String APPARTMENT_PATTERN = "^[A-Za-z0-9/-]{1,6}$";//
+    //form
+    MyForm form;
+
+    /**
+     * Constructor
+     */
     View(){
         form = new MyForm();
 
+    }
+
+    void print(String s){
+        System.out.println(s);
     }
 }
