@@ -19,9 +19,9 @@ public class View {
     final String SCYPE_PATTERN = "\\w{1,15}";
     final String INDEX_PATTERN = "^\\d{5}$"; //
     final String CITY_PATTERN = "^\\D{1,15}$";//
-    final String STREET_PATTERN = "(^[A-Za-z0-9-]{1,25}(\\s[A-Za-z0-9-]{1,25})?)$";//
-    final String BUILDING_PATTERN = "^[A-Za-z0-9/-]{1,6}$";//
-    final String APPARTMENT_PATTERN = "^[A-Za-z0-9/-]{1,6}$";//
+    final String STREET_PATTERN = "(^[A-Za-z0-9-а-яА-Я]{1,25}(\\s[A-Za-z0-9-а-яА-Я]{1,25})?)$";//
+    final String BUILDING_PATTERN = "^[а-яА-ЯA-Za-z0-9/-]{1,6}$";//
+    final String APPARTMENT_PATTERN = "^[A-Za-z0-9/-а-яА-Я]{1,6}$";//
     //form
     MyForm form;
 
