@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Controller {
 
-    private ArrayList<JTextField> list = new ArrayList();
+    private ArrayList<JTextField> list;
     private View view;
     private Model model;
 
@@ -22,6 +22,7 @@ public class Controller {
     Controller(Model model, View view){
         this.view=view;
         this.model=model;
+        list = new ArrayList<>();
 
     }
 
@@ -39,24 +40,24 @@ public class Controller {
          * This listener checks field's data for valid, and if it is
          * data will be given to model
          */
-        view.form.submitButton.addActionListener(e -> {
+        view.form.getSubmitButton().addActionListener(e -> {
             validOfAllItems();
             if(checkvalidOfAllItems()) {
                 //set data
-                model.setSurName(view.form.surName.getText());
-                model.setFirstNameUser(view.form.firstName.getText());
-                model.setThirdName(view.form.thirdName.getText());
-                model.setTelHome(view.form.telHome.getText());
-                model.setTelMobile(view.form.telMobile.getText());
-                model.setNickName(view.form.nickName.getText());
-                model.setGroup(view.form.group.getText());
-                model.setEmail(view.form.email.getText());
-                model.setScype(view.form.scype.getText());
-                model.setIndex(view.form.index.getText());
-                model.setCity(view.form.city.getText());
-                model.setStreet(view.form.street.getText());
-                model.setBuilding(view.form.building.getText());
-                model.setAppartment(view.form.appartment.getText());
+                model.setSurName(view.form.getSurName().getText());
+                model.setFirstNameUser(view.form.getFirstName().getText());
+                model.setThirdName(view.form.getThirdName().getText());
+                model.setTelHome(view.form.getTelHome().getText());
+                model.setTelMobile(view.form.getTelMobile().getText());
+                model.setNickName(view.form.getNickName().getText());
+                model.setGroup(view.form.getGroup().getText());
+                model.setEmail(view.form.getEmail().getText());
+                model.setScype(view.form.getScype().getText());
+                model.setIndex(view.form.getIndex().getText());
+                model.setCity(view.form.getCity().getText());
+                model.setStreet(view.form.getStreet().getText());
+                model.setBuilding(view.form.getBuilding().getText());
+                model.setAppartment(view.form.getAppartment().getText());
                 //create name, adress and write a date
                 model.createName();
                 model.createPostAdress();
@@ -75,7 +76,7 @@ public class Controller {
         /**
          * This method makes fields with valid data enabled for correcting
          */
-        view.form.refreshButton.addActionListener(e -> {
+        view.form.getRefreshButton().addActionListener(e -> {
             for (JTextField j:list) {
                 j.setEnabled(true);
             }
@@ -85,6 +86,7 @@ public class Controller {
     }
 
     //Utility methods
+
     /**
      * This method fills list with JTextFields components
      * @param arrayList is list witch will be filled
@@ -130,7 +132,7 @@ public class Controller {
      *              else, field's background will be pink
      */
     private void checkItemValid(JTextField field){
-        if (field.equals(view.form.group)){
+        if (field.equals(view.form.getGroup())){
             if (field.getText().equals(UserGroup.A.name())|field.getText().equals(UserGroup.B.name())
                     |field.getText().equals(UserGroup.C.name())){
 
@@ -159,27 +161,28 @@ public class Controller {
      */
     @NotNull
     private Pattern createPattern(JTextField field){
-        if (field.equals(view.form.surName)||field.equals(view.form.firstName)||field.equals(view.form.thirdName)) {
+        if (field.equals(view.form.getSurName())||field.equals(view.form.getFirstName())
+                ||field.equals(view.form.getThirdName())) {
             return Pattern.compile(view.NAME_PATTERN);
-        }else if (field.equals(view.form.nickName)){
+        }else if (field.equals(view.form.getNickName())){
             return Pattern.compile(view.NICK_PATTERN);
-        }else if (field.equals(view.form.telHome)){
+        }else if (field.equals(view.form.getTelHome())){
             return Pattern.compile(view.TEL_HOME_PATTERN);
-        }else if (field.equals(view.form.telMobile)){
+        }else if (field.equals(view.form.getTelMobile())){
             return Pattern.compile(view.TEL_MOBILE_PATTERN);
-        }else if (field.equals(view.form.email)){
+        }else if (field.equals(view.form.getEmail())){
             return Pattern.compile(view.EMAIL_PATTERN);
-        }else if (field.equals(view.form.scype)) {
+        }else if (field.equals(view.form.getScype())) {
             return Pattern.compile(view.SCYPE_PATTERN);
-        }else if (field.equals(view.form.index)) {
+        }else if (field.equals(view.form.getIndex())) {
             return Pattern.compile(view.INDEX_PATTERN);
-        }else if (field.equals(view.form.city)) {
+        }else if (field.equals(view.form.getCity())) {
             return Pattern.compile(view.CITY_PATTERN);
-        }else if (field.equals(view.form.street)) {
+        }else if (field.equals(view.form.getStreet())) {
             return Pattern.compile(view.STREET_PATTERN);
-        }else if (field.equals(view.form.building)) {
+        }else if (field.equals(view.form.getBuilding())) {
             return Pattern.compile(view.BUILDING_PATTERN);
-        }else if (field.equals(view.form.appartment)) {
+        }else if (field.equals(view.form.getAppartment())) {
             return Pattern.compile(view.APPARTMENT_PATTERN);
         }
         return Pattern.compile(".*");
