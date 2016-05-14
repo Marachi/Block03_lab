@@ -26,8 +26,13 @@ public class Model {
 
 
     public void createName() {
-      name=surName.substring(0,1).toUpperCase() + surName.substring(1).toLowerCase()+" "
-              + firstNameUser.substring(0,1).toUpperCase()+"."+thirdName.substring(0,1).toUpperCase()+".";
+        if (surName.length()>2) {
+            name = surName.substring(0, 1).toUpperCase() + surName.substring(1).toLowerCase() + " "
+                    + firstNameUser.substring(0, 1).toUpperCase() + "." + thirdName.substring(0, 1).toUpperCase() + ".";
+        }else{
+            name = surName.toUpperCase() + " " + firstNameUser.substring(0, 1).toUpperCase() + "."
+                    + thirdName.substring(0, 1).toUpperCase() + ".";
+        }
     }
 
     public void createPostAdress() {

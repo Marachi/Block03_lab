@@ -63,7 +63,8 @@ public class Controller {
                 model.createPostAdress();
                 model.setDate();
                 model.createAdress();
-//
+
+                //print methods for checking
 //                view.print(model.getName());
 //                view.print(model.getAdress());
 //                view.print(model.getDate());
